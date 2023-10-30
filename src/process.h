@@ -55,12 +55,11 @@ void lista_sort(lista *l, bool sort_by_priority);
 /* adiciona uma nova célula a lista */
 void lista_add(lista *l, celula nova);
 
-/* modifica a prioridade do elemento de maior prioridade
- * da lista */
-void lista_modificaPrioridade(lista* l, int nova_prioridade);
+/* modifica o elemento com ant_prioridade para ter nova_prioridade */
+void lista_modificaPrioridade(lista* l, int ant_prioridade, int nova_prioridade);
 
-/* modifica o tempo do elemento de menor tempo da lista */
-void lista_modificaTempo(lista* l, horario novo_horario);
+/* modifica o elemento de ant_horario com novo_horario */
+void lista_modificaTempo(lista* l, horario ant_horario, horario novo_horario);
 
 /* printa a lista ordenada por prioridade */
 void lista_printListaPorPrioridade(lista* l);

@@ -10,6 +10,8 @@ horario horario_criar(int hh, int mm, int ss){
 	h.hh = hh;
 	h.mm = mm;
 	h.ss = ss;
+
+	return h;
 }
 
 int horario_cmp(horario a, horario b){
@@ -67,10 +69,10 @@ void lista_sort(lista *l, bool sort_by_priority){
 void lista_add(lista *l, celula nova){
 }
 
-void lista_modificaPrioridade(lista* l, int nova_prioridade){
+void lista_modificaPrioridade(lista* l, int ant_prioridade, int nova_prioridade){
 }
 
-void lista_modificaTempo(lista* l, horario novo_horario){
+void lista_modificaTempo(lista* l, horario ant_horario, horario novo_horario){
 }
 
 void lista_printListaPorPrioridade(lista* l){
