@@ -69,16 +69,28 @@ void lista_sort(lista *l, bool sort_by_priority){
 void lista_add(lista *l, celula nova){
 }
 
+void lista_exec(lista *l){
+}
+
+void lista_next(lista* l){
+	printf("%02d %02d:%02d:%02d %s", (l->celulas[0])->prior), 
+		(l->celulas[0])->chegada.hh), (l->celulas[0])->chegada.mm), 
+		(l->celulas[0])->chegada.ss), (l->celulas[0])->descricao));
+}
+
+
 void lista_modificaPrioridade(lista* l, int ant_prioridade, int nova_prioridade){
 }
 
 void lista_modificaTempo(lista* l, horario ant_horario, horario novo_horario){
 }
 
-void lista_printListaPorPrioridade(lista* l){
-}
-
-void lista_printListaPorTempo(lista* l){
+void lista_print(lista* l){
+	for(int i = 0; i <= l->tamanho; i++){
+		printf("%02d %02d:%02d:%02d %s", (l->celulas[i])->prior), 
+		(l->celulas[i])->chegada.hh), (l->celulas[i])->chegada.mm), 
+		(l->celulas[i])->chegada.ss), (l->celulas[i])->descricao));
+	}
 }
 
 void lista_destruir(lista* l){
