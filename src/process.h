@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <stdbool.h>
 
 #define MAX_DESCR 51
@@ -26,6 +27,8 @@ typedef struct {
 typedef struct s_lista lista;
 
 horario horario_criar(int hh, int mm, int ss);
+
+int horario_cmp(horario a, horario b);
 
 /* Compara o valor de duas células.
  * Retorna 1 caso a > b
@@ -70,5 +73,7 @@ void lista_printMaiorPrioridade(lista* l);
 
 /* printa o elemento de menor tempo */
 void lista_printMenorTempo(lista* l);
+
+void lista_destruir(lista* l);
 
 #endif
