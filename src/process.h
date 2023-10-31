@@ -68,7 +68,7 @@ void lista_modificaPrioridade(lista* l, int ant_prioridade, int nova_prioridade)
 void lista_modificaTempo(lista* l, horario ant_horario, horario novo_horario);
 
 /* printa a lista */
-void lista_printLista(lista* l);
+void lista_print(lista* l);
 
 void lista_destruir(lista* l);
 
