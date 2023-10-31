@@ -83,7 +83,8 @@ int main(void){
 			break;
 		}
 
-		lista_destruir(l);
-		return 0;
 	}
+	
+	lista_destruir(l);
+	return 0;
 }
