@@ -63,19 +63,52 @@ lista* lista_criar(void){
 	return l;
 }
 
-// todo: mudar o algoritmo de sorting para quicksort
-void lista_sort(lista *l, bool sort_by_priority){
-	celula tmp;
+void sort(lista* arr, int p, int q, int r, bool cmp_by_priority){
+	int i, j;
+	celula *aux = (celula*) malloc((r + 1) * sizeof(celula));
 
-	for(int i = 0; i < l->tamanho - 1; i++){
-		for(int j = 0; j < l->tamanho - 1; j++){
-			if(celula_cmp(&l->celulas[j], &l->celulas[j + 1], sort_by_priority) > 0){
-				tmp = l->celulas[j];
-				l->celulas[j] = l->celulas[j + 1];
-				l->celulas[j + 1] = tmp;
-			}
+	for(i = p; i <= q; i++)
+		(aux[i]) = (arr->celulas[i]);
+	
+	for(j = q + 1; j <= r; j++)
+		(aux[j]) = (arr->celulas[j]);
+
+	i = p;
+	j = q + 1;
+		
+	for(int k = p; k <= r; k++){
+		if(i > q){
+			(arr->celulas[k]) = (aux[j]);
+			j++;
+		}else if(j > r){
+			(arr->celulas[k]) = (aux[i]);
+			i++;
+		}else if(celula_cmp(&aux[i], &aux[j], cmp_by_priority) != 1){
+			(arr->celulas[k]) = (aux[i]);
+			i++;
+		}else{
+			(arr->celulas[k]) = (aux[j]);
+			j++;
 		}
 	}
+
+	free(aux);
+}
+
+void merge_sort(lista *arr, int p, int r, bool sort_by_priority){
+	int q;
+	
+	if(p < r){
+		q = (p + r)/2;
+
+		merge_sort(arr, p, q, sort_by_priority);
+		merge_sort(arr, q + 1, r, sort_by_priority);
+		sort(arr, p, q, r, sort_by_priority);
+	}
+}
+
+void lista_sort(lista *l, bool sort_by_priority){
+	merge_sort(l, 0, l->tamanho - 1, sort_by_priority);
 }
 
 void lista_add(lista *l, celula nova){
@@ -84,10 +117,13 @@ void lista_add(lista *l, celula nova){
 	l->celulas[l->tamanho - 1] = nova;
 }
 
-void lista_exec(lista *l){
+void lista_exec(lista *l, bool sort_by_priority){
 	if(l->tamanho == 0) return;
 
+	lista_sort(l, sort_by_priority);
+
 	l->tamanho--;
+
 
 	if(l->tamanho == 0){
 		free(l->celulas);
@@ -98,7 +134,9 @@ void lista_exec(lista *l){
 	}
 }
 
-void lista_next(lista* l){
+void lista_next(lista* l, bool sort_by_priority){
+	lista_sort(l, sort_by_priority);
+
 	printf("%02d %02d:%02d:%02d %s\r\n", l->celulas[l->tamanho - 1].prior, 
 		l->celulas[l->tamanho - 1].chegada.hh, l->celulas[l->tamanho - 1].chegada.mm, 
 		l->celulas[l->tamanho - 1].chegada.ss, l->celulas[l->tamanho - 1].descricao);
@@ -123,7 +161,9 @@ void lista_modificaTempo(lista* l, horario ant_horario, horario novo_horario){
 	}
 }
 
-void lista_print(lista* l){
+void lista_print(lista* l, bool sort_by_priority){
+	lista_sort(l, sort_by_priority);
+
 	for(int i = l->tamanho - 1; i >= 0; i--){
 		printf("%02d %02d:%02d:%02d %s\r\n", l->celulas[i].prior, 
 		l->celulas[i].chegada.hh, l->celulas[i].chegada.mm, 
