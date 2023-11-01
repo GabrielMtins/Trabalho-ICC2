@@ -27,10 +27,10 @@ run:
 	./${EXEC}
 
 valgrind:
-	valgrind --leak-check=full ./${EXEC} < entrada.in > saida.txt 2>&1
+	valgrind --leak-check=full ./${EXEC} < 1.in > saida.txt 2>&1
 
 zip:
-	zip -r skiplist.zip Makefile README.md src/
+	zip -r trab1_icc.zip Makefile README.md src/
 
 restore:
 	rm -rf ./binarios/*
